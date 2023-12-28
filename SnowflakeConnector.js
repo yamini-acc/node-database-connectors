@@ -20,13 +20,14 @@ function connectPool(json, cb) {
     username: json.user,
     password: json.password,
     database: json.database,
-    warehouse: json.warehouse
+    warehouse: json.warehouse,
+    authenticator: json.authenticator,
   }
   if(json.insecureConnect){
     db.configure({insecureConnect:true})
   }
   var pool = db.createConnection(connectionObject);
-  pool.connect(function (err, conn) {
+  pool.connectAsync(function (err, conn) {
     if (err) {
       console.error('Unable to connect: ' + err.message); //conn, connection0
       cb(err, null);
@@ -44,14 +45,15 @@ function connect(json, cb) {
     username: json.user,
     password: json.password,
     database: json.database,
-    warehouse: json.warehouse
+    warehouse: json.warehouse,
+    authenticator: json.authenticator,
   }
   
   if(json.insecureConnect){
     db.configure({insecureConnect:true})
   }
   var connection = db.createConnection(connectionObject);
-  connection.connect(function (err, conn) {
+  connection.connectAsync(function (err, conn) {
     if (err) {
       console.error('Unable to connect: ' + err.message); //conn, connection0
       cb(err, null);
