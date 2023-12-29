@@ -188,7 +188,8 @@ function createSelectQuery(json, selectAll) {
   if (strJOIN.length > 0) {
     table = strJOIN;
   } else {
-    table = encloseField(table) + (fromTblAlias ? " as " + fromTblAlias : "");
+    table =
+      encloseField(table, false) + (fromTblAlias ? " as " + fromTblAlias : "");
   }
 
   //order by
