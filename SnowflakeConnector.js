@@ -195,7 +195,10 @@ function createSelectQuery(json, selectAll) {
   //order by
   if (sortby != null) {
     for (var s = 0; s < sortby.length; s++) {
-      var sortField = encloseField(sortby[s].field);
+      // var sortField = encloseField(sortby[s].field);
+      var sortField = sortby.encloseField
+        ? encloseField(sortby[s].field)
+        : sortby[s].field;
       var sortTable =
         sortby[s].table != undefined ? encloseField(sortby[s].table) : null;
       var sortSchema = sortby[s].schema ? encloseField(sortby[s].schema) : null;
